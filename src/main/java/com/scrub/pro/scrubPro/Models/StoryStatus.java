@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "StoryStatus")
 public class StoryStatus {
@@ -15,6 +17,17 @@ public class StoryStatus {
     @NotNull
     @Size(max = 50)
     private String Name;
+
+    @OneToMany(mappedBy = "status")
+    private List<Story> stories;
+
+    public List<Story> getStories() {
+        return stories;
+    }
+
+    public void setStories(List<Story> stories) {
+        this.stories = stories;
+    }
 
     public StoryStatus(int id, String name) {
         Id = id;

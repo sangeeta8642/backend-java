@@ -24,25 +24,26 @@ public class Story {
 
     @ManyToOne
     @JoinColumn(name = "StatusId", referencedColumnName = "Id")
-    private StoryStatus StatusId;
+    private StoryStatus status;
 
     @ManyToOne
     @JoinColumn(name = "BoardId", referencedColumnName = "BoardId")
-    private Board BoardId;
+    private Board board;
 
     @ManyToOne
     @JoinColumn(name = "UserId", referencedColumnName = "UserId")
-    private Users UserId;
+    private Users users;
 
     @ManyToOne
     @JoinColumn(name = "SprintId", referencedColumnName = "SprintId")
-    private Sprint SprintId;
+    private Sprint sprint;
 
     @ManyToOne
     @JoinColumn(name = "EpicId", referencedColumnName = "EpicId")
-    private Epic EpicId;
+    private Epic epic;
 
     // Getters and setters
+
 
     public int getStoryId() {
         return StoryId;
@@ -76,43 +77,43 @@ public class Story {
         Flag = flag;
     }
 
-    public StoryStatus getStatusId() {
-        return StatusId;
+    public StoryStatus getStatus() {
+        return status;
     }
 
-    public void setStatusId(StoryStatus statusId) {
-        StatusId = statusId;
+    public void setStatus(StoryStatus status) {
+        this.status = status;
     }
 
-    public Board getBoardId() {
-        return BoardId;
+    public Board getBoard() {
+        return board;
     }
 
-    public void setBoardId(Board boardId) {
-        BoardId = boardId;
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
-    public Users getUserId() {
-        return UserId;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUserId(Users userId) {
-        UserId = userId;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
-    public Sprint getSprintId() {
-        return SprintId;
+    public Sprint getSprint() {
+        return sprint;
     }
 
-    public void setSprintId(Sprint sprintId) {
-        SprintId = sprintId;
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
     }
 
-    public Epic getEpicId() {
-        return EpicId;
+    public Epic getEpic() {
+        return epic;
     }
 
-    public void setEpicId(Epic epicId) {
-        EpicId = epicId;
+    public void setEpic(Epic epic) {
+        this.epic = epic;
     }
 }

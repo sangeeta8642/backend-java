@@ -31,7 +31,7 @@ public class Sprint {
     @OneToMany(mappedBy = "sprint")
     private List<Release> releases;
 
-    @OneToMany(mappedBy = "story")
+    @OneToMany(mappedBy = "sprint")
     private List<Story> stories;
 
     public Sprint() {

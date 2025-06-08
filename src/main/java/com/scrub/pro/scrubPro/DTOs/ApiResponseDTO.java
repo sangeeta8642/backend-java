@@ -1,26 +1,42 @@
 package com.scrub.pro.scrubPro.DTOs;
 
-import com.scrub.pro.scrubPro.Models.Board;
 public class ApiResponseDTO<T> {
-    private final boolean success;
-    private final String Message;
-    private final T data;
+    private boolean success;
+    private String message;
+    private T data;
+
+    public ApiResponseDTO() {
+        // No-arg constructor is necessary for serialization/deserialization
+    }
 
     public ApiResponseDTO(boolean success, String message, T data) {
         this.success = success;
-        Message = message;
+        this.message = message;
         this.data = data;
     }
 
+    // Getters and Setters
     public boolean isSuccess() {
         return success;
     }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public String getMessage() {
-        return Message;
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {
         return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

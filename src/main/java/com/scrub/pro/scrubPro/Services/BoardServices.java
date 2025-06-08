@@ -2,6 +2,7 @@ package com.scrub.pro.scrubPro.Services;
 
 import com.scrub.pro.scrubPro.DTOs.BoardDTOs.CreateBoardDTO;
 import com.scrub.pro.scrubPro.DTOs.UserDTOs.CreateUserDTO;
+import com.scrub.pro.scrubPro.Exceptions.ResourceNotFoundException;
 import com.scrub.pro.scrubPro.Models.Board;
 import com.scrub.pro.scrubPro.Models.Role;
 import com.scrub.pro.scrubPro.Models.Users;
@@ -25,7 +26,7 @@ public class BoardServices {
 
     public Board getBoard(int boardId) {
         return boardRepo.findById(boardId)
-                .orElseThrow(() -> new RuntimeException("Board not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Board not found"));
     }
 
     public Board createBoard(CreateBoardDTO boardDTO) {

@@ -46,8 +46,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**","/users").permitAll()
+                        .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**","/h2-console/**","/users/**","/role/**").permitAll()
                         .requestMatchers("/users/count/company/**", "/users/company/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

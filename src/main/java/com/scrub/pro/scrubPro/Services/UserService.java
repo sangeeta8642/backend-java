@@ -33,6 +33,7 @@ public class UserService {
     }
 
     public Users createUser(CreateUserDTO userDTO) {
+        System.out.println("userDTO : "+userDTO.getEmail()+" "+userDTO.getUserName()+" "+userDTO.getRoleId()+" "+userDTO.getPassword());
         Role role = roleRepo.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role Not Found"));
 

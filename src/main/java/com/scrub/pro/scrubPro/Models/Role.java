@@ -20,7 +20,8 @@ public class Role {
     @Size(max = 50)
     private String Title;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "role")
+    @com.fasterxml.jackson.annotation.JsonManagedReference
     private List<Users> users;
 
     public List<Users> getUsers() {

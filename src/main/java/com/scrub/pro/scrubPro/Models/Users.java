@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Users")
 public class Users {
@@ -29,8 +31,28 @@ public class Users {
     @Size(max = 255)
     private String Password;
 
+    @OneToMany(mappedBy = "users")
+    private List<Story> stories;
+
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
+    }
+
+    public List<Story> getStories() {
+        return stories;
+    }
+
+    public void setStories(List<Story> stories) {
+        this.stories = stories;
+    }
+
     @ManyToOne
     @JoinColumn(name = "RoleId", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonBackReference
     private Role role;
 
     public Users(int id, String userName, String email, String password, Role role) {

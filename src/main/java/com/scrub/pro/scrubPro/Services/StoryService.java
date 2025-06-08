@@ -62,11 +62,11 @@ public class StoryService {
         story.setStoryName(storyDTO.getStoryName());
         story.setDescription(storyDTO.getDescription());
         story.setFlag(storyDTO.isFlag());
-        story.setBoardId(board);
-        story.setSprintId(sprint);
-        story.setEpicId(epic);
-        story.setStatusId(status);
-        story.setUserId(user);
+        story.setBoard(board);
+        story.setSprint(sprint);
+        story.setEpic(epic);
+        story.setStatus(status);
+        story.setUsers(user);
 
         return storyRepo.save(story);
     }
@@ -93,11 +93,11 @@ public class StoryService {
         story.setStoryName(storyDTO.getStoryName());
         story.setDescription(storyDTO.getDescription());
         story.setFlag(storyDTO.isFlag());
-        story.setBoardId(board);
-        story.setSprintId(sprint);
-        story.setEpicId(epic);
-        story.setStatusId(status);
-        story.setUserId(user);
+        story.setBoard(board);
+        story.setSprint(sprint);
+        story.setEpic(epic);
+        story.setStatus(status);
+        story.setUsers(user);
 
         return storyRepo.save(story);
     }
