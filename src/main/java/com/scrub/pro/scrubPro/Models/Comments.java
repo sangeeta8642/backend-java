@@ -10,6 +10,9 @@ import java.util.List;
 @Table(name = "Comments")
 public class Comments {
 
+    public Comments() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int CommentId;

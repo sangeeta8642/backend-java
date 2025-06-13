@@ -1,5 +1,6 @@
 package com.scrub.pro.scrubPro.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,11 +15,15 @@ public class StoryStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
+    public StoryStatus() {
+    }
+
     @NotNull
     @Size(max = 50)
-    private String Name;
+    private String name;
 
     @OneToMany(mappedBy = "status")
+    @JsonIgnore
     private List<Story> stories;
 
     public List<Story> getStories() {
@@ -31,7 +36,15 @@ public class StoryStatus {
 
     public StoryStatus(int id, String name) {
         Id = id;
-        Name = name;
+        name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -42,11 +55,4 @@ public class StoryStatus {
         Id = id;
     }
 
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
 }

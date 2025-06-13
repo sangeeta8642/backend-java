@@ -12,7 +12,7 @@ public class CreateSprintDTO {
     private String SprintNo;
 
     @NotNull
-    @Size(min = 4,max = 255, message = "Sprint name must contain at least 4 characters")
+    @Size(min = 4, max = 255, message = "Sprint name must contain at least 4 characters")
     private String SprintName;
 
     @NotNull
@@ -24,12 +24,24 @@ public class CreateSprintDTO {
     @NotNull
     private Date EndDate;
 
-    public CreateSprintDTO(String sprintNo, String sprintName, int sprintPoint, Date startDate, Date endDate) {
+    @NotNull
+    private int boardId;
+
+    public int getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
+    }
+
+    public CreateSprintDTO(String sprintNo, String sprintName, int sprintPoint, Date startDate, Date endDate, int boardId) {
         SprintNo = sprintNo;
         SprintName = sprintName;
         SprintPoint = sprintPoint;
         StartDate = startDate;
         EndDate = endDate;
+        this.boardId = boardId;
     }
 
     public String getSprintNo() {

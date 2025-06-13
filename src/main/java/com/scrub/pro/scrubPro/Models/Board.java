@@ -1,5 +1,6 @@
 package com.scrub.pro.scrubPro.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,6 +19,7 @@ public class Board {
     private String BoardName;
 
     @OneToMany(mappedBy = "board")
+    @JsonIgnore
     private List<Story> stories;
 
     public Board() {

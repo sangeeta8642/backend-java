@@ -2,6 +2,8 @@ package com.scrub.pro.scrubPro.Controllers;
 
 import com.scrub.pro.scrubPro.DTOs.ApiResponseDTO;
 import com.scrub.pro.scrubPro.DTOs.StoryDTOs.CreateStoryDTO;
+import com.scrub.pro.scrubPro.DTOs.StoryDTOs.ResStoryDTO;
+import com.scrub.pro.scrubPro.DTOs.StoryStatusDTOs.UpdateStatusDTO;
 import com.scrub.pro.scrubPro.Models.Story;
 import com.scrub.pro.scrubPro.Services.StoryService;
 import jakarta.validation.Valid;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/story")
@@ -51,5 +54,15 @@ public class StoryController {
             return ResponseEntity.status(HttpStatus.OK).body("Story Deleted Successfully");
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Story Deletion Failed");
+    }
+
+    @PatchMapping("/stories/{id}/status")
+    public ResponseEntity<ApiResponseDTO<Story>> updateStoryStatus(
+            @PathVariable int id,
+            @RequestBody Map<String, String> body
+    ) {
+        String statusName = body.get("status");
+        Story updated = storyService.updateStoryStatus(id, statusName);
+        return ResponseEntity.ok(new ApiResponseDTO<>(true, "Story status updated", updated));
     }
 }

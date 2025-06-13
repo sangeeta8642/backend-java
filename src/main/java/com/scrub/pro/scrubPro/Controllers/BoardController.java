@@ -45,11 +45,13 @@ public class BoardController {
     }
 
     @DeleteMapping("/{boardId}")
-    public ResponseEntity<String> deleteBoard(@PathVariable int boardId) {
+    public ResponseEntity<ApiResponseDTO<String>> deleteBoard(@PathVariable int boardId) {
         boolean boardDeleted = boardServices.deleteBoard(boardId);
-        if (boardDeleted) {
-            return ResponseEntity.status(HttpStatus.OK).body("Board Deleted Successfully");
+        if (boardDeleted)   {
+            ApiResponseDTO<String> res = new ApiResponseDTO<>(true, "Board Deleted Successfully", null);
+            return ResponseEntity.status(HttpStatus.OK).body(res);
         }
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Board Deletion Failed");
+        ApiResponseDTO<String> res = new ApiResponseDTO<>(true, "Board Deletion Failed", null);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(res);
     }
 }

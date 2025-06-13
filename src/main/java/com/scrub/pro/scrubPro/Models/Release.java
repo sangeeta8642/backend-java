@@ -13,6 +13,9 @@ public class Release {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ReleaseId;
 
+    public Release() {
+    }
+
     @NotNull
     @Size(min = 4, max = 100, message = "Release name must contain at least 4 characters")
     private String ReleaseName;

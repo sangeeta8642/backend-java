@@ -1,7 +1,5 @@
 package com.scrub.pro.scrubPro.DTOs.StoryDTOs;
 
-import com.scrub.pro.scrubPro.Models.*;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -9,102 +7,104 @@ public class CreateStoryDTO {
 
     @NotNull
     @Size(max = 100)
-    private String StoryName;
+    private String storyName;
 
     @NotNull
     @Size(max = 255)
-    private String Description;
+    private String description;
 
     @NotNull
-    private boolean Flag;
+    private boolean flag;
 
     @NotNull
-    private StoryStatus StatusId;
+    private Integer statusId;
 
     @NotNull
-    private Board BoardId;
+    private Integer boardId;
 
     @NotNull
-    private Users UserId;
+    private Integer userId;
 
     @NotNull
-    private Sprint SprintId;
+    private Integer sprintId;
 
     @NotNull
-    private Epic EpicId;
+    private Integer epicId;
 
-    public CreateStoryDTO(String storyName, String description, boolean flag, StoryStatus statusId, Board boardId, Users userId, Sprint sprintId, Epic epicId) {
-        StoryName = storyName;
-        Description = description;
-        Flag = flag;
-        StatusId = statusId;
-        BoardId = boardId;
-        UserId = userId;
-        SprintId = sprintId;
-        EpicId = epicId;
+    public CreateStoryDTO() {}
+
+    public CreateStoryDTO(String storyName, String description, boolean flag, Integer statusId, Integer boardId, Integer userId, Integer sprintId, Integer epicId) {
+        this.storyName = storyName;
+        this.description = description;
+        this.flag = flag;
+        this.statusId = statusId;
+        this.boardId = boardId;
+        this.userId = userId;
+        this.sprintId = sprintId;
+        this.epicId = epicId;
     }
 
     public String getStoryName() {
-        return StoryName;
+        return storyName;
     }
 
     public void setStoryName(String storyName) {
-        StoryName = storyName;
+        this.storyName = storyName;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public boolean isFlag() {
-        return Flag;
+        return flag;
     }
 
     public void setFlag(boolean flag) {
-        Flag = flag;
+        this.flag = flag;
     }
 
-    public StoryStatus getStatusId() {
-        return StatusId;
+    public Integer getStatusId() {
+        return statusId;
     }
 
-    public void setStatusId(StoryStatus statusId) {
-        StatusId = statusId;
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
     }
 
-    public Board getBoardId() {
-        return BoardId;
+    public Integer getBoardId() {
+        return boardId;
     }
 
-    public void setBoardId(Board boardId) {
-        BoardId = boardId;
+    public void setBoardId(Integer boardId) {
+        this.boardId = boardId;
     }
 
-    public Users getUserId() {
-        return UserId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserId(Users userId) {
-        UserId = userId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Sprint getSprintId() {
-        return SprintId;
+    public Integer getSprintId() {
+        return sprintId;
     }
 
-    public void setSprintId(Sprint sprintId) {
-        SprintId = sprintId;
+    public void setSprintId(Integer sprintId) {
+        this.sprintId = sprintId;
     }
 
-    public Epic getEpicId() {
-        return EpicId;
+    public Integer getEpicId() {
+        return epicId;
     }
 
-    public void setEpicId(Epic epicId) {
-        EpicId = epicId;
+    public void setEpicId(Integer epicId) {
+        this.epicId = epicId;
     }
 }

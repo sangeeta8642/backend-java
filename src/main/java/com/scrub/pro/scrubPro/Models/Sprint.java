@@ -1,5 +1,6 @@
 package com.scrub.pro.scrubPro.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -29,10 +30,17 @@ public class Sprint {
     private Date EndDate;
 
     @OneToMany(mappedBy = "sprint")
+    @JsonIgnore
     private List<Release> releases;
 
     @OneToMany(mappedBy = "sprint")
+    @JsonIgnore
     private List<Story> stories;
+
+    @ManyToOne
+    @JoinColumn(name = "boardId", nullable = false)
+//    @com.fasterxml.jackson.annotation.JsonBackReference
+    private Board board;
 
     public Sprint() {
     }
@@ -45,13 +53,22 @@ public class Sprint {
         this.stories = stories;
     }
 
-    public Sprint(int sprintId, String sprintNo, String sprintName, int sprintPoint, Date startDate, Date endDate) {
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public Sprint(int sprintId, String sprintNo, String sprintName, int sprintPoint, Date startDate, Date endDate, Board board) {
         SprintId = sprintId;
         SprintNo = sprintNo;
         SprintName = sprintName;
         SprintPoint = sprintPoint;
         StartDate = startDate;
         EndDate = endDate;
+        this.board=board;
     }
 
     public int getSprintId() {

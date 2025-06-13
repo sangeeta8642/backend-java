@@ -1,5 +1,6 @@
 package com.scrub.pro.scrubPro.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,6 +23,7 @@ public class Epic {
     private String Description;
 
     @OneToMany(mappedBy = "epic")
+    @JsonIgnore
     private List<Story> stories;
 
     public Epic() {

@@ -20,12 +20,16 @@ public class StoryStatusService {
     }
 
     private StoryStatus convertToEntity(CreateStoryStatusDTO dto) {
-        return new StoryStatus(dto.getId(), dto.getName());
+        StoryStatus status = new StoryStatus();
+        status.setName(dto.getName());
+        return status;
     }
 
-    public CreateStoryStatusDTO create(CreateStoryStatusDTO dto) {
-        StoryStatus entity = convertToEntity(dto);
-        return convertToDTO(repo.save(entity));
+    public StoryStatus create(CreateStoryStatusDTO dto) {
+//        CreateStoryStatusDTO entity = CreateStoryStatusDTO(dto);
+        StoryStatus status = new StoryStatus();
+        status.setName(dto.getName());
+        return repo.save(status);
     }
 
     public CreateStoryStatusDTO getById(int id) {
@@ -34,8 +38,8 @@ public class StoryStatusService {
         return convertToDTO(entity);
     }
 
-    public List<CreateStoryStatusDTO> getAll() {
-        return repo.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
+    public List<StoryStatus> getAll() {
+        return repo.findAll();
     }
 
     public CreateStoryStatusDTO update(int id, CreateStoryStatusDTO dto) {

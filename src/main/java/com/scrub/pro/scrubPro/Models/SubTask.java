@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "SubTask")
 public class SubTask {
+    public SubTask() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

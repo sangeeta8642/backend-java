@@ -2,7 +2,10 @@ package com.scrub.pro.scrubPro.Controllers;
 
 import com.scrub.pro.scrubPro.DTOs.ApiResponseDTO;
 import com.scrub.pro.scrubPro.DTOs.UserDTOs.CreateUserDTO;
+import com.scrub.pro.scrubPro.DTOs.UserDTOs.UserResDTO;
+import com.scrub.pro.scrubPro.Models.Stagged_User;
 import com.scrub.pro.scrubPro.Models.Users;
+import com.scrub.pro.scrubPro.Services.StaggedUserService;
 import com.scrub.pro.scrubPro.Services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -15,13 +18,16 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final StaggedUserService staggedUserService;
 
-    public UserController(UserService userService) {
+
+    public UserController(UserService userService, StaggedUserService staggedUserService) {
         this.userService = userService;
+        this.staggedUserService = staggedUserService;
     }
 
     @GetMapping
-    public List<Users> getAllUsers() {
+    public List<UserResDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -31,16 +37,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponseDTO<Users>> createUser(@RequestBody @Valid CreateUserDTO dto) {
-        Users createdUser = userService.createUser(dto);
-        ApiResponseDTO<Users> res = new ApiResponseDTO<Users>(true, "User Created Successfully", createdUser);
+    public ResponseEntity<ApiResponseDTO<Stagged_User>> createUser(@RequestBody @Valid CreateUserDTO dto) {
+//        Stagged_User createdUser = userService.createUser(dto);
+        System.out.println("UserData " + dto.getUserName() + " " + dto.getEmail() + " " + dto.getPassword() + " " + dto.getRoleId());
+        Stagged_User createdUser = staggedUserService.createStaggedUser(dto);
+        ApiResponseDTO<Stagged_User> res = new ApiResponseDTO<Stagged_User>(true, "User Created Successfully", createdUser);
         return ResponseEntity.status(HttpStatus.OK).body(res);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<ApiResponseDTO<Users>> updateUser(@PathVariable int userId, @RequestBody @Valid CreateUserDTO dto) {
-        Users updatedUser = userService.updateUser(userId, dto);
-        ApiResponseDTO<Users> res = new ApiResponseDTO<Users>(true, "User Update Successfully", updatedUser);
+    public ResponseEntity<ApiResponseDTO<Stagged_User>> updateUser(@PathVariable int userId, @RequestBody @Valid CreateUserDTO dto) {
+        Stagged_User updatedUser = staggedUserService.updateStaggedUser(userId, dto);
+        ApiResponseDTO<Stagged_User> res = new ApiResponseDTO<Stagged_User>(true, "User Update Successfully", updatedUser);
         return ResponseEntity.status(HttpStatus.OK).body(res);
     }
 

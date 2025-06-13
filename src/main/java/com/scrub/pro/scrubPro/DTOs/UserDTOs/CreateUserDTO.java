@@ -4,9 +4,12 @@ public class CreateUserDTO {
     private String UserName;
     private String Email;
     private String Password;
-    private int RoleId;
+    private String RoleId;
 
-    public CreateUserDTO(String userName, String email, String password, int roleId) {
+    public CreateUserDTO() {
+    }
+
+    public CreateUserDTO(String userName, String email, String password, String roleId) {
         UserName = userName;
         Email = email;
         Password = password;
@@ -37,11 +40,11 @@ public class CreateUserDTO {
         Password = password;
     }
 
-    public int getRoleId() {
+    public String getRoleId() {
         return RoleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(String roleId) {
         RoleId = roleId;
     }
 }

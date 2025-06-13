@@ -1,5 +1,6 @@
 package com.scrub.pro.scrubPro.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,7 +22,8 @@ public class Role {
     private String Title;
 
     @OneToMany(mappedBy = "role")
-    @com.fasterxml.jackson.annotation.JsonManagedReference
+//    @com.fasterxml.jackson.annotation.JsonManagedReference
+    @JsonIgnore
     private List<Users> users;
 
     public List<Users> getUsers() {

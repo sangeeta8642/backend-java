@@ -1,48 +1,42 @@
 package com.scrub.pro.scrubPro.Services;
 
 import com.scrub.pro.scrubPro.DTOs.UserDTOs.CreateUserDTO;
-import com.scrub.pro.scrubPro.DTOs.UserDTOs.UserResDTO;
 import com.scrub.pro.scrubPro.Models.Role;
+import com.scrub.pro.scrubPro.Models.Stagged_User;
 import com.scrub.pro.scrubPro.Models.Users;
 import com.scrub.pro.scrubPro.Repositories.RoleRepo;
+import com.scrub.pro.scrubPro.Repositories.StaggedUserRepo;
 import com.scrub.pro.scrubPro.Repositories.UserRepo;
-import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class StaggedUserService {
     private final RoleRepo roleRepo;
-    private final UserRepo userRepo;
+    private final StaggedUserRepo staggedUserRepo;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(RoleRepo roleRepo, UserRepo userRepo, PasswordEncoder passwordEncoder) {
+    public StaggedUserService(RoleRepo roleRepo, StaggedUserRepo staggedUserRepo,PasswordEncoder passwordEncoder) {
         this.roleRepo = roleRepo;
-        this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
+        this.staggedUserRepo = staggedUserRepo;
+        this.passwordEncoder=passwordEncoder;
     }
 
-    public List<UserResDTO> getAllUsers() {
-        return userRepo.findAll().stream()
-                .map(user -> new UserResDTO(
-                        user.getUserId(),
-                        user.getUserName(),
-                        user.getEmail(),
-                        user.getRole()  // Assuming getRoleName() exists
-                ))
-                .collect(Collectors.toList());
+    public List<Stagged_User> getAllStaggedUsers() {
+        return staggedUserRepo.findAll();
     }
 
-    public Users getUser(int userId) {
-        return userRepo.findById(userId)
+    public Stagged_User getStaggedUser(int userId) {
+        return staggedUserRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public Users createUser(CreateUserDTO userDTO) {
-        System.out.println("userDTO : " + userDTO.getEmail() + " " + userDTO.getUserName() + " " + userDTO.getRoleId() + " " + userDTO.getPassword());
+    public Stagged_User createStaggedUser(CreateUserDTO userDTO) {
+        System.out.println("userDTO : "+userDTO.getEmail()+" "+userDTO.getUserName()+" "+userDTO.getRoleId()+" "+userDTO.getPassword());
+//        Role role = roleRepo.findById(userDTO.getRoleId())
+//                .orElseThrow(() -> new RuntimeException("Role Not Found"));
         Role role = roleRepo.findByTitle(userDTO.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role Not Found"));
 
@@ -50,17 +44,17 @@ public class UserService {
 //            return
 //        }
 
-        Users user = new Users();
+        Stagged_User user = new Stagged_User();
         user.setUserName(userDTO.getUserName());
-        user.setEmail(userDTO.getEmail());  // Correct property assignment
+        user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setRole(role);
 
-        return userRepo.save(user);
+        return staggedUserRepo.save(user);
     }
 
-    public Users updateUser(int userId, CreateUserDTO userDTO) {
-        Users user = userRepo.findById(userId)
+    public Stagged_User updateStaggedUser(int userId, CreateUserDTO userDTO) {
+        Stagged_User user = staggedUserRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Role role = roleRepo.findByTitle(userDTO.getRoleId())
@@ -71,15 +65,15 @@ public class UserService {
         user.setPassword(userDTO.getPassword());
         user.setRole(role);
 
-        return userRepo.save(user);
+        return staggedUserRepo.save(user);
     }
 
-    public boolean deleteUser(int userId) {
-        if (!userRepo.existsById(userId)) {
+    public boolean deleteStaggedUser(int userId) {
+        if (!staggedUserRepo.existsById(userId)) {
             throw new RuntimeException("User not found");
 //            return false;
         }
-        userRepo.deleteById(userId);
+        staggedUserRepo.deleteById(userId);
         return true;
     }
 }

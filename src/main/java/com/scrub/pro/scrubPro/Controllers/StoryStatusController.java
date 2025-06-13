@@ -2,6 +2,7 @@ package com.scrub.pro.scrubPro.Controllers;
 
 import com.scrub.pro.scrubPro.DTOs.ApiResponseDTO;
 import com.scrub.pro.scrubPro.DTOs.StoryStatusDTOs.CreateStoryStatusDTO;
+import com.scrub.pro.scrubPro.Models.StoryStatus;
 import com.scrub.pro.scrubPro.Services.StoryStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class StoryStatusController {
     private StoryStatusService service;
 
     @PostMapping
-    public ResponseEntity<ApiResponseDTO<CreateStoryStatusDTO>> create(@RequestBody CreateStoryStatusDTO dto) {
+    public ResponseEntity<ApiResponseDTO<StoryStatus>> create(@RequestBody CreateStoryStatusDTO dto) {
         return ResponseEntity.ok(new ApiResponseDTO<>(true, "Story status created", service.create(dto)));
     }
 
@@ -27,7 +28,7 @@ public class StoryStatusController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponseDTO<List<CreateStoryStatusDTO>>> getAll() {
+    public ResponseEntity<ApiResponseDTO<List<StoryStatus>>> getAll() {
         return ResponseEntity.ok(new ApiResponseDTO<>(true, "All story statuses", service.getAll()));
     }
 
