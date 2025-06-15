@@ -35,10 +35,10 @@ public class StaggedUserService {
 
     public Stagged_User createStaggedUser(CreateUserDTO userDTO) {
         System.out.println("userDTO : "+userDTO.getEmail()+" "+userDTO.getUserName()+" "+userDTO.getRoleId()+" "+userDTO.getPassword());
-//        Role role = roleRepo.findById(userDTO.getRoleId())
-//                .orElseThrow(() -> new RuntimeException("Role Not Found"));
-        Role role = roleRepo.findByTitle(userDTO.getRoleId())
+        Role role = roleRepo.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role Not Found"));
+//        Role role = roleRepo.findByTitle(userDTO.getRoleId())
+//                .orElseThrow(() -> new RuntimeException("Role Not Found"));
 
 //        if(userRepo.existingByEmail(userDTO.getEmail())){
 //            return
@@ -57,7 +57,7 @@ public class StaggedUserService {
         Stagged_User user = staggedUserRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Role role = roleRepo.findByTitle(userDTO.getRoleId())
+        Role role = roleRepo.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role Not Found"));
 
         user.setUserName(userDTO.getUserName());

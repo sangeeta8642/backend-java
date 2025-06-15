@@ -19,8 +19,8 @@ public class CreateStoryDTO {
     @NotNull
     private Integer statusId;
 
-    @NotNull
-    private Integer boardId;
+//    @NotNull
+//    private Integer boardId;
 
     @NotNull
     private Integer userId;
@@ -33,12 +33,12 @@ public class CreateStoryDTO {
 
     public CreateStoryDTO() {}
 
-    public CreateStoryDTO(String storyName, String description, boolean flag, Integer statusId, Integer boardId, Integer userId, Integer sprintId, Integer epicId) {
+    public CreateStoryDTO(String storyName, String description, boolean flag, Integer statusId, Integer userId, Integer sprintId, Integer epicId) {
         this.storyName = storyName;
         this.description = description;
         this.flag = flag;
         this.statusId = statusId;
-        this.boardId = boardId;
+//        this.boardId = boardId;
         this.userId = userId;
         this.sprintId = sprintId;
         this.epicId = epicId;
@@ -76,13 +76,13 @@ public class CreateStoryDTO {
         this.statusId = statusId;
     }
 
-    public Integer getBoardId() {
-        return boardId;
-    }
-
-    public void setBoardId(Integer boardId) {
-        this.boardId = boardId;
-    }
+//    public Integer getBoardId() {
+//        return boardId;
+//    }
+//
+//    public void setBoardId(Integer boardId) {
+//        this.boardId = boardId;
+//    }
 
     public Integer getUserId() {
         return userId;

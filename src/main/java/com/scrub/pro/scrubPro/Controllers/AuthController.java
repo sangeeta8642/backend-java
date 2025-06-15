@@ -62,7 +62,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO dto) {
-        System.out.println("email "+dto.getEmail()+" password "+dto.getPassword()+" matched "+passwordEncoder.matches(dto.getPassword(),"$2a$10$XNDySpBZswmxWdbGQqz8qOA.bFfgdun7qkXnQI22s1Kq4hwIQcSpi"));
+        System.out.println("email " + dto.getEmail() + " password " + dto.getPassword() + " matched " + passwordEncoder.matches(dto.getPassword(), "$2a$10$XNDySpBZswmxWdbGQqz8qOA.bFfgdun7qkXnQI22s1Kq4hwIQcSpi"));
 
         try {
             authManager.authenticate(
@@ -71,7 +71,7 @@ public class AuthController {
             Users user = userRepo.findByEmail(dto.getEmail()).orElse(null);
 
             final String token = jwtUtil.generateToken(dto.getEmail());
-            return ResponseEntity.ok().body(Map.of("token", token,"message","Login Successful","success",true,"user",user));
+            return ResponseEntity.ok().body(Map.of("token", token, "message", "Login Successful", "success", true, "user", user));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
@@ -85,7 +85,7 @@ public class AuthController {
         boolean isStagged = staggedUserRepo.existingByEmail(email);
         boolean isActual = userRepo.existingByEmail(email);
 
-        System.out.println("isStagged "+isStagged+" isActual "+isActual);
+        System.out.println("isStagged " + isStagged + " isActual " + isActual);
 
         if (!isActual && isStagged) {
             return ResponseEntity.ok(Map.of("status", "first_time"));
@@ -99,7 +99,7 @@ public class AuthController {
     @PostMapping("/first-time-login")
     public ResponseEntity<?> firstTimeLogin(@RequestBody FirstTimeLoginReqDTO request) {
         return staggedUserRepo.findByEmail(request.getEmail()).map(staggedUser -> {
-            System.out.println("staggedUser.getPassword() "+staggedUser.getPassword()+" request.getDefaultPassword() "+request.getDefaultPassword()+" request.newPassword() "+request.getNewPassword());
+            System.out.println("staggedUser.getPassword() " + staggedUser.getPassword() + " request.getDefaultPassword() " + request.getDefaultPassword() + " request.newPassword() " + request.getNewPassword());
             if (passwordEncoder.matches(request.getDefaultPassword(), staggedUser.getPassword())) {
 
                 CreateUserDTO user = new CreateUserDTO();
@@ -107,15 +107,15 @@ public class AuthController {
                 user.setEmail(request.getEmail());
                 user.setPassword(request.getNewPassword());
                 user.setUserName(staggedUser.getUserName());
-                user.setRoleId(staggedUser.getRole().getTitle());
+                user.setRoleId(staggedUser.getRole().getId());
 
 //               userRepo.save(user);
-                userService.createUser(user);
+                Users resUser = userService.createUser(user);
 
                 final String token = jwtUtil.generateToken(user.getEmail());
 //                return ResponseEntity.ok().body(Map.of("token", token));
 
-                return ResponseEntity.ok(Map.of("message", "User created successfully","token",token,"user",user));
+                return ResponseEntity.ok(Map.of("message", "User created successfully", "token", token, "user", resUser));
             } else {
                 return ResponseEntity.status(401).body(Map.of("error", "Invalid Password"));
             }

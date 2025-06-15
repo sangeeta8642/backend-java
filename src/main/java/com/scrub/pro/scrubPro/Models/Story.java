@@ -26,10 +26,10 @@ public class Story {
     @JoinColumn(name = "StatusId", referencedColumnName = "Id")
     private StoryStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "BoardId", referencedColumnName = "BoardId")
-    private Board board;
 
+//    @ManyToOne
+//    @JoinColumn(name = "BoardId", referencedColumnName = "BoardId")
+//    private Board board;
     @ManyToOne
     @JoinColumn(name = "UserId", referencedColumnName = "UserId")
     private Users users;
@@ -85,13 +85,13 @@ public class Story {
         this.status = status;
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
+//    public Board getBoard() {
+//        return board;
+//    }
+//
+//    public void setBoard(Board board) {
+//        this.board = board;
+//    }
 
     public Users getUsers() {
         return users;

@@ -42,5 +42,11 @@ public class SubTaskController {
         subTaskService.deleteSubTask(id);
         return ResponseEntity.ok(new ApiResponseDTO<>(true, "SubTask deleted", null));
     }
+
+    @GetMapping("/story/{storyId}")
+    public ResponseEntity<ApiResponseDTO<List<SubTask>>> getByStoryId(@PathVariable int storyId) {
+        List<SubTask> subTasks = subTaskService.getSubTasksByStoryId(storyId);
+        return ResponseEntity.ok(new ApiResponseDTO<>(true, "SubTasks for StoryId: " + storyId, subTasks));
+    }
 }
 

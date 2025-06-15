@@ -18,20 +18,20 @@ public class Board {
     @Size(max = 100,message = "Board name should not extend more than 100 characters")
     private String BoardName;
 
-    @OneToMany(mappedBy = "board")
-    @JsonIgnore
-    private List<Story> stories;
+//    @OneToMany(mappedBy = "board")
+//    @JsonIgnore
+//    private List<Story> stories;
 
     public Board() {
     }
 
-    public List<Story> getStories() {
-        return stories;
-    }
-
-    public void setStories(List<Story> stories) {
-        this.stories = stories;
-    }
+//    public List<Story> getStories() {
+//        return stories;
+//    }
+//
+//    public void setStories(List<Story> stories) {
+//        this.stories = stories;
+//    }
 
     public Board(int boardId, String boardName) {
         BoardId = boardId;

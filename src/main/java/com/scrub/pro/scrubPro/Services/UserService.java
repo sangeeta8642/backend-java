@@ -43,7 +43,7 @@ public class UserService {
 
     public Users createUser(CreateUserDTO userDTO) {
         System.out.println("userDTO : " + userDTO.getEmail() + " " + userDTO.getUserName() + " " + userDTO.getRoleId() + " " + userDTO.getPassword());
-        Role role = roleRepo.findByTitle(userDTO.getRoleId())
+        Role role = roleRepo.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role Not Found"));
 
 //        if(userRepo.existingByEmail(userDTO.getEmail())){
@@ -63,7 +63,7 @@ public class UserService {
         Users user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Role role = roleRepo.findByTitle(userDTO.getRoleId())
+        Role role = roleRepo.findById(userDTO.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role Not Found"));
 
         user.setUserName(userDTO.getUserName());

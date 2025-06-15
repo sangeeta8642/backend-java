@@ -52,8 +52,8 @@ public class StoryService {
         StoryStatus status = statusRepo.findById(storyDTO.getStatusId())
                 .orElseThrow(() -> new RuntimeException("Status Not Found"));
 
-        Board board = boardRepo.findById(storyDTO.getBoardId())
-                .orElseThrow(() -> new RuntimeException("Board Not Found"));
+//        Board board = boardRepo.findById(storyDTO.getBoardId())
+//                .orElseThrow(() -> new RuntimeException("Board Not Found"));
 
         Sprint sprint = sprintRepo.findById(storyDTO.getSprintId())
                 .orElseThrow(() -> new RuntimeException("Sprint Not Found"));
@@ -65,7 +65,7 @@ public class StoryService {
         story.setStoryName(storyDTO.getStoryName());
         story.setDescription(storyDTO.getDescription());
         story.setFlag(storyDTO.isFlag());
-        story.setBoard(board);
+//        story.setBoard(board);
         story.setSprint(sprint);
         story.setEpic(epic);
         story.setStatus(status);
@@ -85,8 +85,8 @@ public class StoryService {
         StoryStatus status = statusRepo.findById(storyDTO.getStatusId())
                 .orElseThrow(() -> new RuntimeException("Status Not Found"));
 
-        Board board = boardRepo.findById(storyDTO.getBoardId())
-                .orElseThrow(() -> new RuntimeException("Board Not Found"));
+//        Board board = boardRepo.findById(storyDTO.getBoardId())
+//                .orElseThrow(() -> new RuntimeException("Board Not Found"));
 
         Sprint sprint = sprintRepo.findById(storyDTO.getSprintId())
                 .orElseThrow(() -> new RuntimeException("Sprint Not Found"));
@@ -97,7 +97,7 @@ public class StoryService {
         story.setStoryName(storyDTO.getStoryName());
         story.setDescription(storyDTO.getDescription());
         story.setFlag(storyDTO.isFlag());
-        story.setBoard(board);
+//        story.setBoard(board);
         story.setSprint(sprint);
         story.setEpic(epic);
         story.setStatus(status);

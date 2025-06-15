@@ -59,4 +59,8 @@ public class SubTaskService {
         subTaskRepo.deleteById(taskId);
         return true;
     }
+
+    public List<SubTask> getSubTasksByStoryId(int storyId) {
+        return subTaskRepo.findByStoryId(storyId);
+    }
 }
