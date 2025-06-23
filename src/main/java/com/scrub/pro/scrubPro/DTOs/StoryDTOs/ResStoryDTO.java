@@ -4,11 +4,31 @@ public class ResStoryDTO {
     private int id;
     private String title;
     private String status;
+    private String userName;
+    private String des;
 
-    public ResStoryDTO(int id, String title, String status) {
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public ResStoryDTO(int id, String title, String status, String userName, String des) {
         this.id = id;
         this.title = title;
         this.status = status;
+        this.userName=userName;
+        this.des=des;
     }
 
     public ResStoryDTO() {

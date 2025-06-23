@@ -153,6 +153,8 @@ public class SprintService {
         dto.setId(story.getStoryId());
         dto.setTitle(story.getStoryName());
         dto.setStatus(story.getStatus().getName());
+        dto.setUserName(story.getUsers().getUserName());
+        dto.setDes(story.getDescription());
         return dto;
     }
 

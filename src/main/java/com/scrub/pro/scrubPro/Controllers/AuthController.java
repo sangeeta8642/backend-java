@@ -70,7 +70,8 @@ public class AuthController {
 
             Users user = userRepo.findByEmail(dto.getEmail()).orElse(null);
 
-            final String token = jwtUtil.generateToken(dto.getEmail());
+            assert user != null;
+            final String token = jwtUtil.generateToken(dto.getEmail(), user.getRole().getTitle());
             return ResponseEntity.ok().body(Map.of("token", token, "message", "Login Successful", "success", true, "user", user));
 
         } catch (Exception e) {
@@ -112,7 +113,7 @@ public class AuthController {
 //               userRepo.save(user);
                 Users resUser = userService.createUser(user);
 
-                final String token = jwtUtil.generateToken(user.getEmail());
+                final String token = jwtUtil.generateToken(user.getEmail(), resUser.getRole().getTitle());
 //                return ResponseEntity.ok().body(Map.of("token", token));
 
                 return ResponseEntity.ok(Map.of("message", "User created successfully", "token", token, "user", resUser));
